@@ -1,20 +1,19 @@
 import {StyleSheet} from 'react-native';
+import AddNote from '../components/AddNote';
 
 import EditScreenInfo from '../components/EditScreenInfo';
+import MainHeader from '../components/MainHeader';
 import NotesList from '../components/NotesList';
+import ScreenContainer from '../components/ScreenContainer';
 import {AppText, AppView} from '../components/Themed';
 import {RootTabScreenProps} from '../types';
 
-export default function HomeScreen({navigation}: RootTabScreenProps<'TabOne'>) {
+export default function HomeScreen({navigation}: RootTabScreenProps<'Home'>) {
   return (
-    <AppView style={styles.container}>
+    <ScreenContainer>
+      <MainHeader />
       <NotesList />
-    </AppView>
+      <AddNote />
+    </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

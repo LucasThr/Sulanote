@@ -9,7 +9,7 @@ type Props = {
 };
 
 const AppInput = ({placeholder, value, style}: Props) => {
-  const [text, onChangeText] = React.useState('Title');
+  const [text, onChangeText] = React.useState('');
   const {colors} = useTheme();
   const color = colors.text;
   return (
@@ -17,7 +17,8 @@ const AppInput = ({placeholder, value, style}: Props) => {
       style={[{color, fontSize: 14}, style]}
       onChangeText={onChangeText}
       value={text}
-      placeholder="useless placeholder"
+      autoFocus
+      placeholder="Title"
     />
   );
 };

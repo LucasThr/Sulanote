@@ -4,7 +4,7 @@ import {AppText} from '../Themed';
 import {LightTheme} from '../../constants/Colors';
 import {useTheme} from '@react-navigation/native';
 import NoteContainer from './NoteContainer';
-
+import {Ionicons} from '@expo/vector-icons';
 type Props = {};
 
 const NoteHeader = (props: Props) => {
@@ -17,19 +17,26 @@ const NoteHeader = (props: Props) => {
       }}>
       <View
         style={{
-          height: 100,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          paddingHorizontal: 16,
+          alignItems: 'center',
+          height: 80,
           backgroundColor: colors.background,
           borderBottomLeftRadius: 15,
           borderBottomRightRadius: 15,
         }}>
-        <AppText>NoteHeader</AppText>
+        <Ionicons name="arrow-back-circle-outline" size={36} />
+        <AppText style={{fontSize: 24}}>Edit</AppText>
+        <Ionicons name="checkmark-circle-outline" size={36} />
       </View>
       <View
         style={{
+          zIndex: 10,
           height: 20,
           flexDirection: 'row',
           justifyContent: 'space-evenly',
-          elevation: 2,
+          elevation: 3,
           alignItems: 'center',
         }}>
         <View
@@ -41,6 +48,7 @@ const NoteHeader = (props: Props) => {
             borderRadius: 3,
           }}
         />
+
         <View
           style={{
             height: 30,
@@ -62,6 +70,7 @@ const NoteHeader = (props: Props) => {
       </View>
       <View
         style={{
+          zIndex: -10,
           borderTopLeftRadius: 15,
           borderTopRightRadius: 15,
           height: 20,

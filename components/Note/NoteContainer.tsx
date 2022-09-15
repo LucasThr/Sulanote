@@ -9,7 +9,7 @@ type Props = {};
 const NoteContainer = (props: Props) => {
   return (
     <AppView style={{padding: 16}}>
-      <AppInput style={{fontSize: 36, marginBottom: 15}} />
+      <AppInput style={{fontSize: 32, marginBottom: 15}} />
       <AppAreaInput />
     </AppView>
   );

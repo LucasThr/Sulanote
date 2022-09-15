@@ -24,17 +24,27 @@ import LinkingConfiguration from './LinkingConfiguration';
 import CategoryScreen from '../screens/CategoryScreen';
 import HomeScreen from '../screens/HomeScreen';
 import NoteScreen from '../screens/NoteScreen';
+import {useStore} from '../store';
+import SignIn from '../screens/Auth/SignIn';
+import {supabase} from '../supabaseClient';
 
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  const [session, setSession] = React.useState(null);
+  const token = useStore((state) => state.token);
+  supabase.auth.onAuthStateChange((_event, session) => {
+    console.log('session', session);
+    setSession(session);
+  });
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : LightTheme}>
-      <RootNavigator />
+      {/* <RootNavigator /> */}
+      {!session ? <AuthNavigator /> : <RootNavigator />}
     </NavigationContainer>
   );
 }
@@ -44,6 +54,18 @@ export default function Navigation({
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function AuthNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
 
 function RootNavigator() {
   return (
@@ -89,22 +111,8 @@ function BottomTabNavigator() {
         name="HomeScreen"
         component={HomeScreen}
         options={({navigation}: RootTabScreenProps<'Home'>) => ({
+          headerShown: false,
           title: 'Home',
-          tabBarIcon: ({color}) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({pressed}) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{marginRight: 15}}
-              />
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen

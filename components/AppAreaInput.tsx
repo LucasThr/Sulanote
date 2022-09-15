@@ -9,16 +9,17 @@ type Props = {
 };
 
 const AppAreaInput = ({placeholder, value, style}: Props) => {
-  const [text, onChangeText] = React.useState('Title');
+  const [text, onChangeText] = React.useState('');
   const {colors} = useTheme();
   const color = colors.text;
   return (
     <TextInput
-      style={[{color, fontSize: 20}, style]}
+      style={[{color, fontSize: 18}, style]}
+      placeholderTextColor={colors.text + '55'}
       multiline
       onChangeText={onChangeText}
       value={text}
-      placeholder="useless placeholder"
+      placeholder=""
     />
   );
 };
