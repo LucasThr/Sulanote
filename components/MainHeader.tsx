@@ -26,11 +26,19 @@ const MainHeader = ({deleteNotes}: Props) => {
         }}>
         <AppText style={{fontSize: 32}}>Notes</AppText>
         <Pressable
+          style={({pressed}) => [
+            {
+              backgroundColor: colors.text,
+              padding: 6,
+              borderRadius: 10,
+              opacity: pressed ? 0.6 : 1,
+            },
+          ]}
           onPress={async () => {
             // const {error} = await supabase.auth.signOut();
             deleteNotes();
           }}>
-          <Ionicons name="trash-outline" size={30} />
+          <Ionicons name="trash-outline" size={22} color={colors.background} />
         </Pressable>
       </View>
     </View>

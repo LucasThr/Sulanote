@@ -6,6 +6,7 @@ import {useNavigation, useTheme} from '@react-navigation/native';
 import NoteContainer from './NoteContainer';
 import {Ionicons} from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import {LinearGradient} from 'expo-linear-gradient';
 type Props = {
   save: Function;
   isSave: boolean;
@@ -57,6 +58,9 @@ const NoteHeader = ({save, isSave}: Props) => {
           onPress={() => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
             save();
+            setTimeout(() => {
+              navigation.goBack();
+            }, 500);
           }}
           hitSlop={14}
           style={({pressed}) => [
@@ -77,35 +81,37 @@ const NoteHeader = ({save, isSave}: Props) => {
       <View
         style={{
           zIndex: 10,
-          height: 20,
+          height: 15,
           flexDirection: 'row',
           justifyContent: 'space-evenly',
           elevation: 3,
           alignItems: 'center',
         }}>
-        <View
+        <LinearGradient
+          colors={['#353535', '#8e8e8e', '#353535']}
           style={{
             height: 30,
-            width: 15,
+            width: 13,
             backgroundColor: '#5b5b5b',
             elevation: 5,
             borderRadius: 3,
           }}
         />
-
-        <View
+        <LinearGradient
+          colors={['#353535', '#8e8e8e', '#353535']}
           style={{
             height: 30,
-            width: 15,
+            width: 13,
             backgroundColor: '#5b5b5b',
             elevation: 5,
             borderRadius: 3,
           }}
         />
-        <View
+        <LinearGradient
+          colors={['#353535', '#8e8e8e', '#353535']}
           style={{
             height: 30,
-            width: 15,
+            width: 13,
             backgroundColor: '#5b5b5b',
             elevation: 5,
             borderRadius: 3,

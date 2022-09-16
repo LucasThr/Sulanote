@@ -28,11 +28,7 @@ const NoteScreen = (props: Props) => {
     note?.text || undefined,
   );
   const [isSave, setIsSave] = useState<boolean>(false);
-  console.log(
-    'colo)',
-    Math.floor(Math.random() * notesColors.length),
-    colors[notesColors[Math.floor(Math.random() * notesColors.length)]],
-  );
+
   const saveNote = async () => {
     if (isNew) {
       dispatch(
@@ -57,23 +53,7 @@ const NoteScreen = (props: Props) => {
         }),
       );
     }
-    console.log('save');
   };
-
-  // useEffect(() => {
-  //   const backAction = () => {
-  //     saveNote();
-  //     navigation.goBack();
-  //     return true;
-  //   };
-
-  //   const backHandler = BackHandler.addEventListener(
-  //     'hardwareBackPress',
-  //     backAction,
-  //   );
-
-  //   return () => backHandler.remove();
-  // }, []);
 
   return (
     <ScreenContainer>
