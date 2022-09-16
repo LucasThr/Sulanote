@@ -6,10 +6,10 @@ type Props = {
   placeholder?: string;
   value: string;
   style?: any;
+  onChangeText: Function;
 };
 
-const AppAreaInput = ({placeholder, value, style}: Props) => {
-  const [text, onChangeText] = React.useState('');
+const AppAreaInput = ({placeholder, value, style, onChangeText}: Props) => {
   const {colors} = useTheme();
   const color = colors.text;
   return (
@@ -18,7 +18,7 @@ const AppAreaInput = ({placeholder, value, style}: Props) => {
       placeholderTextColor={colors.text + '55'}
       multiline
       onChangeText={onChangeText}
-      value={text}
+      value={value}
       placeholder=""
     />
   );

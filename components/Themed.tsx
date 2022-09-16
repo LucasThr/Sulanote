@@ -33,11 +33,24 @@ export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
 export function AppText(props: TextProps) {
-  const {style, lightColor, darkColor, onlyLight, ...otherProps} = props;
+  const {
+    style,
+    lightColor,
+    darkColor,
+    onlyLight,
+    numberOfLines,
+    ...otherProps
+  } = props;
   // const color = useThemeColor({light: lightColor, dark: darkColor}, 'text');
   const {colors} = useTheme();
   let color = onlyLight ? LightTheme.colors.text : colors.text;
-  return <DefaultText style={[{color}, style]} {...otherProps} />;
+  return (
+    <DefaultText
+      numberOfLines={numberOfLines || 0}
+      style={[{color}, style]}
+      {...otherProps}
+    />
+  );
 }
 
 export function AppView(props: ViewProps) {

@@ -24,7 +24,6 @@ import LinkingConfiguration from './LinkingConfiguration';
 import CategoryScreen from '../screens/CategoryScreen';
 import HomeScreen from '../screens/HomeScreen';
 import NoteScreen from '../screens/NoteScreen';
-import {useStore} from '../store';
 import SignIn from '../screens/Auth/SignIn';
 import {supabase} from '../supabaseClient';
 
@@ -34,17 +33,16 @@ export default function Navigation({
   colorScheme: ColorSchemeName;
 }) {
   const [session, setSession] = React.useState(null);
-  const token = useStore((state) => state.token);
-  supabase.auth.onAuthStateChange((_event, session) => {
-    console.log('session', session);
-    setSession(session);
-  });
+  // supabase.auth.onAuthStateChange((_event, session) => {
+  //   setSession(session);
+  // });
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : LightTheme}>
       {/* <RootNavigator /> */}
-      {!session ? <AuthNavigator /> : <RootNavigator />}
+      {/* {!session ? <AuthNavigator /> : <RootNavigator />} */}
+      <RootNavigator />
     </NavigationContainer>
   );
 }

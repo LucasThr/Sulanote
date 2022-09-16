@@ -7,7 +7,11 @@ export const LightTheme = {
     text: '#000',
     background: '#fff',
     lightGreen: '#e4ffe6',
+    lightBlue: '#f2f7ff',
+    pink: '#ffab91',
     latte: '#fef6e5',
+    orange: '#ffcc80',
+    cyan: '#81deea',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
@@ -20,12 +24,25 @@ export const DarkTheme = {
     text: '#fff',
     background: '#000',
     lightGreen: '#e4ffe6',
+    lightBlue: '#f2f7ff',
+    pink: '#ffab91',
     latte: '#fef6e5',
+    orange: '#ffcc80',
+    cyan: '#81deea',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
   },
 };
+
+export const notesColors = [
+  'lightGreen',
+  'latte',
+  'lightBlue',
+  'pink',
+  'orange',
+  'cyan',
+];
 
 export default {
   light: {

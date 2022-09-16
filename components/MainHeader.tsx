@@ -5,9 +5,9 @@ import {useTheme} from '@react-navigation/native';
 import {Ionicons} from '@expo/vector-icons';
 import {supabase} from '../supabaseClient';
 
-type Props = {};
+type Props = {deleteNotes: Function};
 
-const MainHeader = (props: Props) => {
+const MainHeader = ({deleteNotes}: Props) => {
   const {colors} = useTheme();
   return (
     <View
@@ -24,12 +24,13 @@ const MainHeader = (props: Props) => {
           height: 80,
           backgroundColor: colors.background,
         }}>
-        <AppText style={{fontSize: 24}}>Home</AppText>
+        <AppText style={{fontSize: 32}}>Notes</AppText>
         <Pressable
           onPress={async () => {
-            const {error} = await supabase.auth.signOut();
+            // const {error} = await supabase.auth.signOut();
+            deleteNotes();
           }}>
-          <Ionicons name="log-out-outline" size={36} />
+          <Ionicons name="trash-outline" size={30} />
         </Pressable>
       </View>
     </View>

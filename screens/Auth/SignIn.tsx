@@ -2,7 +2,6 @@ import {View, Text, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import {supabase} from '../../supabaseClient';
 import {useTheme} from '@react-navigation/native';
-import {authService} from '../../services/auth.service';
 
 type Props = {};
 

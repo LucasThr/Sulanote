@@ -1,21 +1,38 @@
-import create, {StateCreator} from 'zustand';
-import {createUserSlice, UserSlice} from './userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-interface FishSlice {
-  fishes: number;
-  addFish: () => void;
-}
-const createFishSlice: StateCreator<
-  BearSlice & FishSlice,
-  [],
-  [],
-  FishSlice
-> = (set) => ({
-  fishes: 0,
-  addFish: () => set((state) => ({fishes: state.fishes + 1})),
+import noteSlice from './reducers/noteSlice';
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+};
+
+const reducers = combineReducers({
+  notes: noteSlice,
 });
 
-export const useStore = create<UserSlice & FishSlice>()((...a) => ({
-  ...createUserSlice(...a),
-  ...createFishSlice(...a),
-}));
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        /* ignore persistance actions */
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);

@@ -6,17 +6,17 @@ type Props = {
   placeholder?: string;
   value: string;
   style?: any;
+  onChangeText: Function;
 };
 
-const AppInput = ({placeholder, value, style}: Props) => {
-  const [text, onChangeText] = React.useState('');
+const AppInput = ({placeholder, value, style, onChangeText}: Props) => {
   const {colors} = useTheme();
   const color = colors.text;
   return (
     <TextInput
       style={[{color, fontSize: 14}, style]}
       onChangeText={onChangeText}
-      value={text}
+      value={value}
       autoFocus
       placeholder="Title"
     />

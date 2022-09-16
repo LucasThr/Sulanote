@@ -3,12 +3,15 @@ import React from 'react';
 import {Ionicons} from '@expo/vector-icons';
 import {useTheme} from '@react-navigation/native';
 
-type Props = {};
+type Props = {addNote: Function};
 
-const AddNote = (props: Props) => {
+const AddNote = ({addNote}: Props) => {
   const {colors} = useTheme();
   return (
     <Pressable
+      onPress={() => {
+        addNote();
+      }}
       style={{
         position: 'absolute',
         bottom: 20,
